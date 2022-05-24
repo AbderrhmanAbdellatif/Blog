@@ -1,0 +1,39 @@
+﻿@model  ProgrammersBlog.Mvc.Areas.Admin.Models.UserWithRolesViewModel
+     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" >
+
+<div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+
+               <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
+            </ul>
+        </div>
+        <div class="shadow-bottom"></div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" >
+                <li class=" nav-item"><a class="d-flex align-items-center" href="index.html"><i data-feather="menu"></i><span class="menu-title text-truncate btn btn-primary waves-effect waves-float waves-light" >MENÜ</span></a>
+                    <ul class="menu-content">
+                        <li><a asp-area="Admin" asp-controller="Home" asp-action="Index" class="d-flex align-items-center" ><i data-feather="box"></i><span class="menu-item text-truncate" >Dashboard</span></a>
+                        </li>
+                        <li><a asp-area="Admin" asp-controller="Category" asp-action="Index"  class="d-flex align-items-center"><i data-feather="arrow-up"></i><span class="menu-item text-truncate" >Kategoriler</span></a>
+                         <li><a asp-area="Admin" asp-controller="Article" asp-action="Index"  class="d-flex align-items-center sb-nav-link-icon" ><i data-feather="arrow-up"></i><span class="menu-item text-truncate">Makaleler</span></a></li>
+                          <li><a  asp-area="Admin" asp-controller="Comment" asp-action="Index"  class="d-flex align-items-center"><i data-feather="arrow-up"></i><span class="menu-item text-truncate">Yorumlar</span></a></li>
+                        @if (Model.Roles.Any(r=>r.Equals("Admin")))
+                        {
+                          <li><a asp-area="Admin" asp-controller="Role" asp-action="Index"  class="d-flex align-items-center"><i data-feather="arrow-up"></i><span class="menu-item text-truncate" >Roller</span></a></li>
+                           <li><a asp-area="Admin" asp-controller="User" asp-action="Index"  class="d-flex align-items-center"><i data-feather="arrow-up"></i><span class="menu-item text-truncate " >Kullanıcılar</span></a></li>
+                        
+
+                        }     
+
+                        </li>
+                </li>
+                 </ul>
+             
+            </ul>
+        </div>
+         </div>
+
+          <footer class="footer footer-static footer-light">
+        <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">Blog 2022</span></span><span class="float-md-end d-none d-md-block">Giriş Yapan kullancı:<i data-feather="heart"></i></span>@Model.User.UserName</p>
+    </footer>
+

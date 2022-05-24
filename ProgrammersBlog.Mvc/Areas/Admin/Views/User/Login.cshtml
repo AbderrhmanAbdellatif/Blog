@@ -1,0 +1,128 @@
+﻿@model ProgrammersBlog.Entities.Dtos.UserLoginDto
+
+@{
+    Layout = "_UserLoginLayout";
+    ViewBag.Title = "Giriş Yapınız";
+}
+
+<!-- Login v1 -->
+<div class="card mb-0">
+    
+    <div class="card-body">
+        <a href="javascript:void(0);" class="brand-logo">
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="69" height="52">
+
+<g transform="matrix(0.14967462 0 0 0.15028903 0 0)">
+	<g transform="matrix(0.67578125 0 0 0.67578125 57.499996 -0)">
+        <path d="M512 467.478C 512 492.066 492.066 512 467.478 512L467.478 512L44.522 512C 19.933 512 0 492.066 0 467.478C 0 442.88998 19.933 422.956 44.522 422.956L44.522 422.956L467.479 422.956C 492.066 422.957 512 442.89 512 467.478z" stroke="none" fill="#A5A5A5" fill-rule="nonzero" />
+        <path d="M169.739 478.609C 169.739 483.219 166.00099 486.957 161.39099 486.957L161.39099 486.957L72.348 486.957C 67.738 486.957 64 483.219 64 478.609C 64 473.99902 67.738 470.26102 72.348 470.26102L72.348 470.26102L161.39099 470.26102C 166.002 470.261 169.739 473.998 169.739 478.609zM439.652 470.261L272.696 470.261C 268.08603 470.261 264.34802 473.999 264.34802 478.60898C 264.34802 483.21896 268.08603 486.95697 272.696 486.95697L272.696 486.95697L439.653 486.95697C 444.263 486.95697 448.001 483.21896 448.001 478.60898C 448.001 473.999 444.262 470.261 439.652 470.261zM234.852 470.261L233.739 470.261C 229.129 470.261 225.39099 473.999 225.39099 478.60898C 225.39099 483.21896 229.129 486.95697 233.73898 486.95697L233.73898 486.95697L234.85199 486.95697C 239.46199 486.95697 243.19998 483.21896 243.19998 478.60898C 243.19998 473.999 239.462 470.261 234.852 470.261zM200.348 470.261L199.235 470.261C 194.625 470.261 190.887 473.999 190.887 478.60898C 190.887 483.21896 194.625 486.95697 199.23499 486.95697L199.23499 486.95697L200.34799 486.95697C 204.958 486.95697 208.69598 483.21896 208.69598 478.60898C 208.69598 473.999 204.958 470.261 200.348 470.261z" stroke="none" fill="#777777" fill-rule="nonzero" />
+        <path d="M478.609 155.826L478.609 400.69598C 478.609 425.284 458.67502 445.218 434.087 445.218L434.087 445.218L77.913 445.218C 53.325005 445.218 33.391003 425.284 33.391003 400.69598L33.391003 400.69598L33.391003 155.82599C 33.391003 131.23799 53.324005 111.303986 77.913 111.303986L77.913 111.303986L434.087 111.303986C 458.675 111.304 478.609 131.238 478.609 155.826z" stroke="none" fill="#CCCAC4" fill-rule="nonzero" />
+        <path d="M434.087 422.957L77.913 422.957C 65.618004 422.957 55.652 412.991 55.652 400.696L55.652 400.696L55.652 155.82602C 55.652 143.53102 65.618 133.56502 77.913 133.56502L77.913 133.56502L434.087 133.56502C 446.38202 133.56502 456.348 143.53102 456.348 155.82602L456.348 155.82602L456.348 400.696C 456.348 412.99 446.382 422.957 434.087 422.957z" stroke="none" fill="#F2EFE2" fill-rule="nonzero" />
+        <path d="M406.261 203.13L105.739 203.13C 96.519 203.13 89.043 195.655 89.043 186.434C 89.043 177.214 96.518 169.738 105.739 169.738L105.739 169.738L406.261 169.738C 415.481 169.738 422.95697 177.21301 422.95697 186.434C 422.957 195.655 415.481 203.13 406.261 203.13zM244.87 244.87C 244.87 235.65 237.39499 228.174 228.174 228.174L228.174 228.174L105.739 228.174C 96.519 228.174 89.043 235.649 89.043 244.87C 89.043 254.09 96.518 261.56598 105.739 261.56598L105.739 261.56598L228.174 261.56598C 237.395 261.565 244.87 254.09 244.87 244.87zM422.957 244.87C 422.957 235.65 415.482 228.174 406.261 228.174L406.261 228.174L283.826 228.174C 274.606 228.174 267.13 235.649 267.13 244.87C 267.13 254.09 274.605 261.56598 283.826 261.56598L283.826 261.56598L406.261 261.56598C 415.482 261.565 422.957 254.09 422.957 244.87z" stroke="none" fill="#BFBBA3" fill-rule="nonzero" />
+        <path d="M406.261 384L105.739 384C 96.519 384 89.043 376.525 89.043 367.30402L89.043 367.30402L89.043 300.52103C 89.043 291.30103 96.518 283.825 105.739 283.825L105.739 283.825L406.261 283.825C 415.481 283.825 422.95697 291.30002 422.95697 300.521L422.95697 300.521L422.95697 367.304C 422.957 376.525 415.482 384 406.261 384z" stroke="none" fill="#FFD880" fill-rule="nonzero" />
+        <path d="M139.688 374.23L137.356 376.562L137.442 376.648L118.344 395.746C 116.974 397.116 115.115005 397.88602 113.177 397.88602C 111.239 397.88602 109.380005 397.11603 108.01 395.746L108.01 395.746L88.912 376.648L88.998 376.562L86.666 374.23C 79.989 367.553 79.989 356.729 86.666 350.05103C 93.343 343.37402 104.167 343.37402 110.845 350.05103L110.845 350.05103L113.177 352.38303L115.509 350.05103C 122.186005 343.37402 133.01001 343.37402 139.688 350.05103C 146.365 356.728 146.365 367.553 139.688 374.23z" stroke="none" fill="#FC8059" fill-rule="nonzero" />
+        <path d="M376.209 292.36L353.94803 322.042C 349.49603 327.978 340.59103 327.978 336.13904 322.042L336.13904 322.042L313.87805 292.36C 312.43304 290.43298 311.65204 288.09 311.65204 285.68198L311.65204 285.68198L311.65204 22.261C 311.652 9.966 321.618 0 333.913 0L333.913 0L356.17398 0C 368.469 0 378.43497 9.966 378.43497 22.261L378.43497 22.261L378.43497 285.68198C 378.435 288.089 377.653 290.433 376.209 292.36z" stroke="none" fill="#D6A154" fill-rule="nonzero" />
+        <path d="M370.087 300.522L353.948 322.04C 349.496 327.976 340.591 327.976 336.139 322.04L336.139 322.04L320 300.522L370.087 300.522z" stroke="none" fill="#B26932" fill-rule="nonzero" />
+        <path d="M311.652 256L311.652 22.261C 311.652 9.966 321.618 0 333.913 0L333.913 0L356.17398 0C 368.469 0 378.43497 9.966 378.43497 22.261L378.43497 22.261L378.43497 256L311.652 256z" stroke="none" fill="#FFD880" fill-rule="nonzero" />
+        <path d="M345.043 256L345.043 0L356.173 0C 368.46802 0 378.434 9.966 378.434 22.261L378.434 22.261L378.434 256L345.043 256z" stroke="none" fill="#FCC159" fill-rule="nonzero" />
+        <path d="M378.435 22.261L378.435 44.522L311.652 44.522L311.652 22.261C 311.652 9.966 321.618 0 333.913 0L333.913 0L356.17398 0C 368.469 0 378.435 9.966 378.435 22.261z" stroke="none" fill="#FC8059" fill-rule="nonzero" />
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+		<g>
+		</g>
+	</g>
+</g>
+</svg>
+       
+        </a>
+
+        <h4 class="card-title mb-1">Hoş geldiniz! 👋</h4>
+        <p class="card-text mb-2">Lütfen hesabınıza giriş yapın ve maceraya başlayın</p>
+
+        <form class="auth-login-form mt-2" asp-controller="User" asp-action="Login" method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label for="login-email" class="form-label">E-posta</label>
+                <input type="text" class="form-control" asp-for="Email" placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="d-flex justify-content-between">
+                    <label for="login-password">Parola</label>
+                    <a href="page-auth-forgot-password-v1.html">
+                        <small>Parolanızı mı unuttunuz?</small>
+                    </a>
+                </div>
+                <div class="input-group input-group-merge form-password-toggle">
+                    <input type="password" class="form-control form-control-merge" asp-for="Password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="input-group-append">
+                        <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox" asp-for="RememberMe" tabindex="3" />
+                    <label class="custom-control-label" asp-for="RememberMe"> Beni Hatırla </label>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" tabindex="4">Giriş Yap</button>
+        </form>
+
+        <p class="text-center mt-2">
+            <span>Platformumuzda yeni misiniz?</span>
+            <a href="page-auth-register-v1.html">
+                <span>Hesap oluşturunuz</span>
+            </a>
+        </p>
+
+        <div class="divider my-2">
+            <div class="divider-text">or</div>
+        </div>
+
+        <div class="auth-footer-btn d-flex justify-content-center">
+            <a href="javascript:void(0)" class="btn btn-facebook">
+                <i data-feather="facebook"></i>
+            </a>
+            <a href="javascript:void(0)" class="btn btn-twitter white">
+                <i data-feather="twitter"></i>
+            </a>
+            <a href="javascript:void(0)" class="btn btn-google">
+                <i data-feather="mail"></i>
+            </a>
+            <a href="javascript:void(0)" class="btn btn-github">
+                <i data-feather="github"></i>
+            </a>
+        </div>
+    </div>
+    <div />

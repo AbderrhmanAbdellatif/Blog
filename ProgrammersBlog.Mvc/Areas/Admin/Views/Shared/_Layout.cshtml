@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html class="loading" lang="tr" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @* <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">*@
+    <title>@ViewBag.Title - Admin Paneli | Programmers Blog</title>
+    <link rel="apple-touch-icon" href="~/app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/1330/1330233.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    @await Html.PartialAsync("_LayoutCssPartial")
+
+</head>
+<!-- END: Head-->
+<!-- BEGIN: Body   menu-collapsed -->
+
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+
+    <!-- BEGIN: Header-->
+    <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
+        <div class="navbar-container d-flex content">
+            <div class="bookmark-wrapper d-flex align-items-center">
+                <ul class="nav navbar-nav d-xl-none">
+                    <li class="nav-item"><a class="nav-link menu-toggle" href="#"><i class="ficon" data-feather="menu"></i></a></li>
+                </ul>
+                @*    <ul class="nav navbar-nav bookmark-icons">
+                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-email.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Email"><i class="ficon" data-feather="mail"></i></a></li>
+                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Chat"><i class="ficon" data-feather="message-square"></i></a></li>
+                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-calendar.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Calendar"><i class="ficon" data-feather="calendar"></i></a></li>
+                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Todo"><i class="ficon" data-feather="check-square"></i></a></li>
+                </ul>*@
+
+                <img class="navbar-container" src="https://portal.fsm.edu.tr/img/logo.a7457ecf.svg" alt="logo" class="fill-current text-primary" style="width: 12rem;">
+
+            </div>
+
+            @await Component.InvokeAsync("UserMenu")
+        </div>
+    </nav>
+
+    <ul class="main-search-list-defaultlist-other-list d-none">
+        <li class="auto-suggestion justify-content-between">
+            <a class="d-flex align-items-center justify-content-between w-100 py-50">
+                <div class="d-flex justify-content-start"><span class="me-75" data-feather="alert-circle"></span><span>No results found.</span></div>
+            </a>
+        </li>
+    </ul>
+    <!-- END: Header-->
+    <!-- BEGIN: Main Menu-->
+    @await Component.InvokeAsync("AdminMenu")
+
+    <!-- END: Main Menu-->
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mt-2" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <a class="navbar-container">@RenderBody() </a>
+        @await Html.PartialAsync("_LayoutContentPartial")
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+
+    <!-- BEGIN: Footer-->
+    <footer class="footer footer-static footer-light">
+        <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">Blog 2022</span></span><span class="float-md-end d-none d-md-block">Yazılım Mühendisliği<i data-feather="heart"></i></span></p>
+    </footer>
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
+    @await Html.PartialAsync("_LayoutJsPartial")
+    @await RenderSectionAsync("Scripts",false)
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
+</body>
+<!-- END: Body-->
+
+</html>
