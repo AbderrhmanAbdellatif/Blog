@@ -11,9 +11,7 @@ namespace ProgrammersBlog.Data.Abstract
         IArticleRepository Articles { get; } // unitofwork.Articles
         ICategoryRepository Categories { get; }
         ICommentRepository Comments { get; }
-       // _unitOfWork.Categories.AddAsync(category);
-        //_unitOfWork.Users.AddAsync(User);
-        //_unitOfWork.SaveAsync();
+       
         Task<int> SaveAsync();
 
     }

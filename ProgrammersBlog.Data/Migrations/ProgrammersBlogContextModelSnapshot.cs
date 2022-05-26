@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgrammersBlog.Data.Concrete.EntityFramework.Contexts;
 
+#nullable disable
+
 namespace ProgrammersBlog.Data.Migrations
 {
     [DbContext(typeof(ProgrammersBlogContext))]
@@ -15,16 +17,18 @@ namespace ProgrammersBlog.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("ProgrammersBlog.Entities.Concrete.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -102,15 +106,16 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammersBlog.Entities.Concrete.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateData")
                         .HasColumnType("datetime2");
@@ -149,18 +154,18 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(5663),
+                            CreateData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3100),
                             CreatedByName = "InitialCreate",
                             Description = "C# programlar ilg ilgili en Guncel Bilgiler",
                             IsActive = true,
                             IsDeleted = false,
-                            ModifedData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(6466),
+                            ModifedData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3101),
                             ModifiedByName = "InitialCreate",
                             Name = "c#",
                             Note = "C# Blog Kategorisi"
@@ -168,12 +173,12 @@ namespace ProgrammersBlog.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreateData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(7175),
+                            CreateData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3104),
                             CreatedByName = "InitialCreate",
                             Description = "cpp programlar ilg ilgili en Guncel Bilgiler",
                             IsActive = true,
                             IsDeleted = false,
-                            ModifedData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(7177),
+                            ModifedData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3105),
                             ModifiedByName = "InitialCreate",
                             Name = "cpp",
                             Note = "cpp Blog Kategorisi"
@@ -181,12 +186,12 @@ namespace ProgrammersBlog.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreateData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(7182),
+                            CreateData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3108),
                             CreatedByName = "InitialCreate",
                             Description = "Python programlar ilg ilgili en Guncel Bilgiler",
                             IsActive = true,
                             IsDeleted = false,
-                            ModifedData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(7183),
+                            ModifedData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3108),
                             ModifiedByName = "InitialCreate",
                             Name = "Python",
                             Note = "Python Blog Kategorisi"
@@ -194,12 +199,12 @@ namespace ProgrammersBlog.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreateData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(7188),
+                            CreateData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3111),
                             CreatedByName = "InitialCreate",
                             Description = "JS programlar ilg ilgili en Guncel Bilgiler",
                             IsActive = true,
                             IsDeleted = false,
-                            ModifedData = new DateTime(2022, 5, 23, 15, 4, 55, 322, DateTimeKind.Local).AddTicks(7189),
+                            ModifedData = new DateTime(2022, 5, 24, 16, 6, 49, 755, DateTimeKind.Local).AddTicks(3111),
                             ModifiedByName = "InitialCreate",
                             Name = "JS",
                             Note = "JS Blog Kategorisi"
@@ -210,8 +215,9 @@ namespace ProgrammersBlog.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("ArticleId")
                         .HasColumnType("int");
@@ -251,15 +257,16 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammersBlog.Entities.Concrete.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -280,20 +287,20 @@ namespace ProgrammersBlog.Data.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AspNetRoles", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "ee7eb9f5-cf0a-4952-9afc-5cb25ebda7e3",
+                            ConcurrencyStamp = "0dcefa1f-49d1-4225-8fd7-10a0f8eb2333",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "1b6a8582-96c7-4599-86d6-a0d8637f6fba",
+                            ConcurrencyStamp = "0bb46628-534e-476f-9b9c-29938899c2fd",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -303,8 +310,9 @@ namespace ProgrammersBlog.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -319,15 +327,16 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammersBlog.Entities.Concrete.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -391,24 +400,24 @@ namespace ProgrammersBlog.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AspNetUsers", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec2e709d-80d6-409a-99fb-560c37786cda",
+                            ConcurrencyStamp = "ca4ede29-5761-4013-aee8-8ecaaad73bbb",
                             Email = "adminuser@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINUSER@GMAIL.COM",
                             NormalizedUserName = "ADMINUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGocOPt+dXX26K/MSwEbFY9hUICvElUGABY8k+Hg/52d4Xl1WJgSg7boXTd213aMuw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEbVC8f+AslvUKa9s7uzi+QbolwwM9b+xEPgvnuq4+I4Z1PicvSnfChKGhG5tgoaAg==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "8419eefa-db86-4168-b424-9ac09b66cc4c",
+                            SecurityStamp = "5f8862f0-b50b-45b3-9fea-ee67f00f4d85",
                             TwoFactorEnabled = false,
                             UserName = "adminuser"
                         },
@@ -416,17 +425,17 @@ namespace ProgrammersBlog.Data.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3ccff944-fed3-4393-bf46-ca2f30907b6f",
+                            ConcurrencyStamp = "12e93555-ee76-49f3-9552-5f20c35d5cf1",
                             Email = "editoruser@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EDITORUSER@GMAIL.COM",
                             NormalizedUserName = "EDITORUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKQoFgxy/ART/biByS3y4hD9GginQ4TXP3ISJpsPFjUiG3B5i5lcAHIeUNZgFG8CoA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECaLvm1AM7OnY4k82PWDeNLhZ+W9VmtlgnaVg6j+NYXq5+O8ekX2JzX+39WjmYVbmA==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "59830fac-fca5-4106-8a6c-73ed5108382c",
+                            SecurityStamp = "f1b506bf-77c0-4332-9278-65f3db81c324",
                             TwoFactorEnabled = false,
                             UserName = "editoruser"
                         });
@@ -436,8 +445,9 @@ namespace ProgrammersBlog.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -452,7 +462,7 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammersBlog.Entities.Concrete.UserLogin", b =>
@@ -475,7 +485,7 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammersBlog.Entities.Concrete.UserRole", b =>
@@ -490,7 +500,7 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
 
                     b.HasData(
                         new
@@ -523,7 +533,7 @@ namespace ProgrammersBlog.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("ProgrammersBlog.Entities.Concrete.Article", b =>

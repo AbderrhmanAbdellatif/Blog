@@ -20,10 +20,14 @@ namespace ProgrammersBlog.Data.Concrete.EntityFramework.Contexts
         public DbSet<Role> roles { get; set; }
         public DbSet<User> users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //        @"Server=localhost;Database=FSMVUProgrammersBlog;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+        //}
+        public ProgrammersBlogContext(DbContextOptions<ProgrammersBlogContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(
-                @"Server=localhost;Database=FSMVUProgrammersBlog;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

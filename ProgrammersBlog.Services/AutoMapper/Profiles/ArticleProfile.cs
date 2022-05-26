@@ -15,6 +15,7 @@ namespace ProgrammersBlog.Services.AutoMapper.Profiles
         {
             CreateMap<ArticleAddDto, Article>().ForMember(dest => dest.CreateData, opt => opt.MapFrom(x => DateTime.Now));
             CreateMap<ArticleUpdateDto, Article>().ForMember(dest => dest.ModifedData, opt => opt.MapFrom(x => DateTime.Now));
+            CreateMap<Article, ArticleUpdateDto>();
         }
     }
 }
