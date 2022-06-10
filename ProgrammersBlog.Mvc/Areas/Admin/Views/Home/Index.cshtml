@@ -46,80 +46,99 @@
         </div>
     </div>
 </div>
-   <div class="row">
-                        <!-- Donut Chart Starts -->
-                        <div class="col-lg-4 col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Sessions By Device</h4>
-                                </div>
-                                <div class="card-body">
-                                    <canvas class="doughnut-chart-ex chartjs" data-height="275"></canvas>
-                                    <div class="d-flex justify-content-between mt-3 mb-1">
-                                        <div class="d-flex align-items-center">
-                                            <i data-feather="monitor" class="font-medium-2 text-primary"></i>
-                                            <span class="font-weight-bold ml-75 mr-25">Desktop</span>
-                                            <span>- 80%</span>
-                                        </div>
-                                        <div>
-                                            <span>2%</span>
-                                            <i data-feather="arrow-up" class="text-success"></i>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <div class="d-flex align-items-center">
-                                            <i data-feather="tablet" class="font-medium-2 text-warning"></i>
-                                            <span class="font-weight-bold ml-75 mr-25">Mobile</span>
-                                            <span>- 10%</span>
-                                        </div>
-                                        <div>
-                                            <span>8%</span>
-                                            <i data-feather="arrow-up" class="text-success"></i>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <i data-feather="tablet" class="font-medium-2 text-success"></i>
-                                            <span class="font-weight-bold ml-75 mr-25">Tablet</span>
-                                            <span>- 10%</span>
-                                        </div>
-                                        <div>
-                                            <span>-5%</span>
-                                            <i data-feather="arrow-down" class="text-danger"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Donut Chart Starts -->
-
-                        <!-- Scatter Chart Starts  -->
-                        <div class="col-lg-8 col-12">
-                            <div class="card">
-                                <div class="card-header d-flex justify-content-between align-items-baseline align-items-sm-center flex-sm-row flex-column">
-                                    <h4 class="card-title">New Product Data</h4>
-                                    <div class="btn-group btn-group-toggle mt-md-0 mt-1" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary active">
-                                            <input type="radio" name="radio_options" id="radio_option1" checked="" />
-                                            <span>Daily</span>
-                                        </label>
-                                        <label class="btn btn-outline-primary">
-                                            <input type="radio" name="radio_options" id="radio_option2" />
-                                            <span>Monthly</span>
-                                        </label>
-                                        <label class="btn btn-outline-primary">
-                                            <input type="radio" name="radio_options" id="radio_option3" />
-                                            <span>Yearly</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <canvas class="scatter-chart-ex chartjs" data-height="415"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Scatter Chart Ends  -->
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-area mr-1"></i>
+                En Çok Okunan Makaleler Grafiği
+            </div>
+            <div class="card-body"><canvas id="viewCountChart" width="100%" height="30"></canvas></div>
+        </div>
+    </div>
+    @*<div class="col-xl-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar mr-1"></i>
+                Bar Chart Örneği
+            </div>
+            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+        </div>
+    </div>*@
+</div>
+@*<div class="row">
+    <!-- Donut Chart Starts -->
+    <div class="col-lg-4 col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Sessions By Device</h4>
+            </div>
+            <div class="card-body">
+                <canvas class="doughnut-chart-ex chartjs" data-height="275"></canvas>
+                <div class="d-flex justify-content-between mt-3 mb-1">
+                    <div class="d-flex align-items-center">
+                        <i data-feather="monitor" class="font-medium-2 text-primary"></i>
+                        <span class="font-weight-bold ml-75 mr-25">Desktop</span>
+                        <span>- 80%</span>
                     </div>
+                    <div>
+                        <span>2%</span>
+                        <i data-feather="arrow-up" class="text-success"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mb-1">
+                    <div class="d-flex align-items-center">
+                        <i data-feather="tablet" class="font-medium-2 text-warning"></i>
+                        <span class="font-weight-bold ml-75 mr-25">Mobile</span>
+                        <span>- 10%</span>
+                    </div>
+                    <div>
+                        <span>8%</span>
+                        <i data-feather="arrow-up" class="text-success"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <i data-feather="tablet" class="font-medium-2 text-success"></i>
+                        <span class="font-weight-bold ml-75 mr-25">Tablet</span>
+                        <span>- 10%</span>
+                    </div>
+                    <div>
+                        <span>-5%</span>
+                        <i data-feather="arrow-down" class="text-danger"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Donut Chart Starts -->
+    <!-- Scatter Chart Starts  -->
+    <div class="col-lg-8 col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-baseline align-items-sm-center flex-sm-row flex-column">
+                <h4 class="card-title">New Product Data</h4>
+                <div class="btn-group btn-group-toggle mt-md-0 mt-1" data-toggle="buttons">
+                    <label class="btn btn-outline-primary active">
+                        <input type="radio" name="radio_options" id="radio_option1" checked="" />
+                        <span>Daily</span>
+                    </label>
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="radio_options" id="radio_option2" />
+                        <span>Monthly</span>
+                    </label>
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="radio_options" id="radio_option3" />
+                        <span>Yearly</span>
+                    </label>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas class="scatter-chart-ex chartjs" data-height="415"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- Scatter Chart Ends  -->
+</div>*@
 
 <div class="card mb-4">
     <div class="card-header">
@@ -130,63 +149,60 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="articlesTable" width="100%" cellspacing="0">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Kategori</th>
-                    <th>Başlık</th>
-                    <th>Küçük Resim</th>
-                    <th>Tarih</th>
-                    <th>Okunma Sayısı</th>
-                    <th>Yorum Sayısı</th>
-                    <th>Aktif Mi?</th>
-                    <th>Silinmiş Mi?</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Başlık</th>
+                        <th>Küçük Resim</th>
+                        <th>Tarih</th>
+                        <th>Okunma Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                    </tr>
                 </thead>
                 <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Kategori</th>
-                    <th>Başlık</th>
-                    <th>Küçük Resim</th>
-                    <th>Tarih</th>
-                    <th>Okunma Sayısı</th>
-                    <th>Yorum Sayısı</th>
-                    <th>Aktif Mi?</th>
-                    <th>Silinmiş Mi?</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Başlık</th>
+                        <th>Küçük Resim</th>
+                        <th>Tarih</th>
+                        <th>Okunma Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                    </tr>
                 </tfoot>
                 <tbody>
-                @foreach (var article in Model.Articles.Articles)
-                {
-                    <tr>
-                        <td>@article.Id</td>
-                        <td>@article.Category.Name</td>
-                        <td>@article.Title</td>
-                        <td><img src="~/img/@article.Thumbnail" style="max-height: 50px; max-width: 50px;" /></td>
-                        <td>@article.Date.ToShortDateString()</td>
-                        <td>@article.ViewCount</td>
-                        <td>@article.CommentCount</td>
-                        <td>@(article.IsActive ? "Evet" : "Hayır")</td>
-                        <td>@(article.IsDeleted ? "Evet" : "Hayır")</td>
-                    </tr>
-                }
-                    
+                    @foreach (var article in Model.Articles.Articles)
+                    {
+                        <tr>
+                            <td>@article.Id</td>
+                            <td>@article.Category.Name</td>
+                            <td>@article.Title</td>
+                            <td><img src="~/img/@article.Thumbnail" style="max-height: 50px; max-width: 50px;" /></td>
+                            <td>@article.Date.ToShortDateString()</td>
+                            <td>@article.ViewCount</td>
+                            <td>@article.CommentCount</td>
+                            <td>@(article.IsActive ? "Evet" : "Hayır")</td>
+                            <td>@(article.IsDeleted ? "Evet" : "Hayır")</td>
+                        </tr>
+                    }
+
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 @section Scripts
-{   
-  
+    {
+
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="~/app-assets/vendors/js/charts/chart.min.js"></script>
     <script src="~/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <!-- END: Page Vendor JS-->
-
-   
-
     <!-- BEGIN: Page JS-->
     <script src="~/app-assets/js/scripts/charts/chart-chartjs.js"></script>
     <!-- END: Page JS-->
