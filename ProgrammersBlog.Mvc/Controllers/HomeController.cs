@@ -1,37 +1,65 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProgrammersBlog.Mvc.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using NToastNotify;
+using ProgrammersBlog.Entities.Concrete;
+using ProgrammersBlog.Entities.Dtos;
+using ProgrammersBlog.Services.Abstract;
+using ProgrammersBlog.Shared.Utilities.Helpers.Abstract;
 
 namespace ProgrammersBlog.Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IArticleService _articleService;
+        private readonly AboutUsPageInfo _aboutUsPageInfo;
+        private readonly IMailService _mailService;
+        private readonly IToastNotification _toastNotification;
+        private readonly IWritableOptions<AboutUsPageInfo> _aboutUsPageInfoWrite;
+        public HomeController(IArticleService articleService, IOptionsSnapshot<AboutUsPageInfo> aboutUsPageInfo, IMailService mailService, IToastNotification toastNotification, IWritableOptions<AboutUsPageInfo> aboutUsPageInfoWrite)
         {
-            _logger = logger;
+            _articleService = articleService;
+            _mailService = mailService;
+            _toastNotification = toastNotification;
+            _aboutUsPageInfo = aboutUsPageInfo.Value;
+            _aboutUsPageInfoWrite = aboutUsPageInfoWrite;
         }
-
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(int? categoryId, int currentPage = 1, int pageSize = 5, bool isAscending = false)
+        {
+            var articlesResult = await (categoryId == null
+                ? _articleService.GetAllByPagingAsync(null, currentPage, pageSize, isAscending)
+                : _articleService.GetAllByPagingAsync(categoryId.Value, currentPage, pageSize, isAscending));
+            return View(articlesResult.Data);
+        }
+        [HttpGet]
+        public IActionResult About()
+        {
+          
+            return View(_aboutUsPageInfo);
+        }
+        [HttpGet]
+        public IActionResult Contact()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Contact(EmailSendDto emailSendDto)
         {
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                var result = _mailService.SendContactEmail(emailSendDto);
+                _toastNotification.AddSuccessToastMessage(result.Message, new ToastrOptions
+                {
+                    Title = "Başarılı İşlem!"
+                });
+                return View();
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            }
+            return View(emailSendDto);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using NToastNotify.Helpers;
 using ProgrammersBlog.Entities.Concrete;
@@ -26,12 +27,14 @@ namespace ProgrammersBlog.Mvc.Areas.Admin.Controllers
         {
             _commentService = commentService;
         }
+        [Authorize(Roles = "SuperAdmin,Comment.Read")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var result = await _commentService.GetAllByNonDeletedAsync();
             return View(result.Data);
         }
+        [Authorize(Roles = "SuperAdmin,Comment.Read")]
         [HttpGet]
         public async Task<IActionResult> GetAllComments()
         {
@@ -42,13 +45,43 @@ namespace ProgrammersBlog.Mvc.Areas.Admin.Controllers
             });
             return Json(commentsResult);
         }
+        [Authorize(Roles = "SuperAdmin,Comment.Read")]
+        [HttpGet]
+        public async Task<IActionResult> GetDetail(int commentId)
+        {
+            var result = await _commentService.GetAsync(commentId);
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return PartialView("_CommentDetailPartial", result.Data);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        [Authorize(Roles = "SuperAdmin,Comment.Delete")]
         [HttpPost]
         public async Task<IActionResult> Delete(int commentId)
         {
             var result = await _commentService.DeleteAsync(commentId, LoggedInUser.UserName);
-            var commentResult = JsonSerializer.Serialize(result);
+            var commentResult = JsonSerializer.Serialize(result, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
             return Json(commentResult);
         }
+        [Authorize(Roles = "SuperAdmin,Comment.Update")]
+        [HttpPost]
+        public async Task<IActionResult> Approve(int commentId)
+        {
+            var result = await _commentService.ApproveAsync(commentId, LoggedInUser.UserName);
+            var commentResult = JsonSerializer.Serialize(result, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(commentResult);
+        }
+        [Authorize(Roles = "SuperAdmin,Comment.Update")]
         [HttpGet]
         public async Task<IActionResult> Update(int commentId)
         {
@@ -62,6 +95,7 @@ namespace ProgrammersBlog.Mvc.Areas.Admin.Controllers
                 return NotFound();
             }
         }
+        [Authorize(Roles = "SuperAdmin,Comment.Update")]
         [HttpPost]
         public async Task<IActionResult> Update(CommentUpdateDto commentUpdateDto)
         {
@@ -74,7 +108,7 @@ namespace ProgrammersBlog.Mvc.Areas.Admin.Controllers
                     {
                         CommentDto = result.Data,
                         CommentUpdatePartial = await this.RenderViewToStringAsync("_CommentUpdatePartial", commentUpdateDto)
-                    },new JsonSerializerOptions
+                    }, new JsonSerializerOptions
                     {
                         ReferenceHandler = ReferenceHandler.Preserve
                     });
@@ -86,6 +120,47 @@ namespace ProgrammersBlog.Mvc.Areas.Admin.Controllers
                 CommentUpdatePartial = await this.RenderViewToStringAsync("_CommentUpdatePartial", commentUpdateDto)
             });
             return Json(commentUpdateAjaxErrorModel);
+        }
+        [Authorize(Roles = "SuperAdmin,Comment.Read")]
+        [HttpGet]
+        public async Task<IActionResult> DeletedComments()
+        {
+            var result = await _commentService.GetAllByDeletedAsync();
+            return View(result.Data);
+
+        }
+        [Authorize(Roles = "SuperAdmin,Comment.Read")]
+        [HttpGet]
+        public async Task<JsonResult> GetAllDeletedComments()
+        {
+            var result = await _commentService.GetAllByDeletedAsync();
+            var comments = JsonSerializer.Serialize(result, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(comments);
+        }
+        [Authorize(Roles = "SuperAdmin,Comment.Update")]
+        [HttpPost]
+        public async Task<JsonResult> UndoDelete(int commentId)
+        {
+            var result = await _commentService.UndoDeleteAsync(commentId, LoggedInUser.UserName);
+            var undoDeleteCommentResult = JsonSerializer.Serialize(result, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(undoDeleteCommentResult);
+        }
+        [Authorize(Roles = "SuperAdmin,Comment.Delete")]
+        [HttpPost]
+        public async Task<JsonResult> HardDelete(int commentId)
+        {
+            var result = await _commentService.HardDeleteAsync(commentId);
+            var hardDeletedCommentResult = JsonSerializer.Serialize(result, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(hardDeletedCommentResult);
         }
 
     }

@@ -19,10 +19,18 @@ namespace ProgrammersBlog.Mvc.Areas.Admin.ViewComponents
             _userManager = userManager;
         }
 
-        public ViewViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var user = _userManager.GetUserAsync(HttpContext.User).Result;
-            var roles = _userManager.GetRolesAsync(user).Result;
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var roles = await _userManager.GetRolesAsync(user);
+            if (user== null)
+            {
+                return Content("KULLANCI BUlUnmadi");
+            }
+            if (roles == null)
+            {
+                return Content("roles BUlUnmadi");
+            }
             return View(new UserWithRolesViewModel
             {
                 User = user,

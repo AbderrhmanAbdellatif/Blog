@@ -9,9 +9,9 @@ namespace ProgrammersBlog.Shared.Entities.Abstract
      public abstract class EntityBase
     {
         public virtual int Id { get; set; }
-        public virtual DateTime CreateData { get; set; } = DateTime.Now;     // override CreateData = new DataTime(2020/01/01)
+        public virtual DateTime CreatedDate { get; set; } = DateTime.Now;     // override CreatedDate = new DataTime(2020/01/01)
 
-        public virtual DateTime ModifedData { get; set; } = DateTime.Now;
+        public virtual DateTime ModifiedDate { get; set; } = DateTime.Now;
 
         public virtual bool IsDeleted { get; set; } = false;
         public virtual bool IsActive { get; set; } = true;

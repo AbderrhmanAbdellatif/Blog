@@ -1,0 +1,58 @@
+﻿import { Toast } from "../lib/bootstrap/dist/js/bootstrap";
+
+$(document).ready(function () {
+    $(function () {
+        $(document).on('click', '#btnSave', function (event) {
+            event.preventDefault();
+            const form = $('form-comment-add');
+            const actionUrl = form.attr('action');
+            const dataToSend = form.serialize();
+            $.post(actionUrl, dataToSend).done(function (data) {
+                const commentAddAjaxModel = jQuery.parseJSON(data);
+                console.log(commentAddAjaxModel)
+                const NewFormBody = $('.form-card', commentAddAjaxModel.CommentAddPartial); // bu form commetAddAjaxModeldan comment AddPartial uzereinden gelecek
+                const CardBody = $('.form-card');
+                CardBody.replaceWith(NewFormBody);
+                const IsValid = NewFormBody.find('[name="IsValid"]').val() == 'Ture'; // (partial ayini adi olsu n)dogru bir sekilde geldi  mi 
+                if (IsValid) {
+                const newSingleComment = `<div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="https://randomuser.me/api/portraits/men/34.jpg" alt="">
+                <div class="media-body">
+                        <h5 class="mt-0">${commentAddAjaxModel.CommentDto.Comment.CreatedByName}</h5>
+                        ${commentAddAjaxModel.CommentDto.Comment.Text}
+                    </div>
+                </div>`;
+                    const NewSingleCommentObject = $(newSingleComment);
+                    NewSingleCommentObject.hide();
+                    $("#comments").append(NewSingleCommentObject);
+                    NewSingleCommentObject.fadeIn(3000);
+                    toastr.success(
+                        `Sayın ${commentAddAjaxModel.CommentDto.Comment.CreatedByName
+                        } yorumunuz başarıyla eklenmiştir. Bir örneği sizler için karşınıza gelecek. Fakat; yorumunuz onaylandıktan sonra görünür olacaktır.`);
+                    $("#btnSave").prop('disabled', true);
+                    setTimeout(function () {
+                        $("#btnSave").prop('disabled', false);
+                    },15000);
+                }
+                else {
+                    let summaryText = "";
+                    $('#validation-summary > ul > li').each(function () {
+                        let text = $(this).text();
+                        summaryText += `*${text}\n`;
+                    });
+                    toastr.warning(summaryText);
+                }
+            }).fail(function (error) {
+                console.error(error);
+            });
+
+        });
+
+
+
+    });
+
+
+
+
+});

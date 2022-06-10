@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +16,7 @@ using ProgrammersBlog.Shared.Utilities.Results.Concrete;
 
 namespace ProgrammersBlog.Mvc.Helpers.Concrete
 {
-    public class ImageHelper:IImageHelper
+    public class ImageHelper : IImageHelper
     {
         private readonly IWebHostEnvironment _env;
         private readonly string _wwwroot;
@@ -29,7 +30,7 @@ namespace ProgrammersBlog.Mvc.Helpers.Concrete
             _wwwroot = _env.WebRootPath;
         }
 
-        public async Task<IDataResult<ImageUploadedDto>> Upload(string name, IFormFile pictureFile,PictureType pictureType ,string folderName=null)
+        public async Task<IDataResult<ImageUploadedDto>> Upload(string name, IFormFile pictureFile, PictureType pictureType, string folderName = null)
         {
 
             /* Eğer folderName değişkeni null gelir ise, o zaman resim tipine göre (PictureType) klasör adı ataması yapılır. */
@@ -46,6 +47,11 @@ namespace ProgrammersBlog.Mvc.Helpers.Concrete
 
             /* Resimin uzantısı fileExtension adlı değişkene atanır. */
             string fileExtension = Path.GetExtension(pictureFile.FileName);
+
+
+            Regex regex = new Regex("[*'\",._&#^@]");
+            name = regex.Replace(name, string.Empty);
+
 
             DateTime dateTime = DateTime.Now;
             /*
@@ -93,11 +99,11 @@ namespace ProgrammersBlog.Mvc.Helpers.Concrete
                     Size = fileInfo.Length
                 };
                 System.IO.File.Delete(fileToDelete);
-                return new DataResult<ImageDeletedDto>(ResultStatus.Success,imageDeletedDto);
+                return new DataResult<ImageDeletedDto>(ResultStatus.Success, imageDeletedDto);
             }
             else
             {
-                return new DataResult<ImageDeletedDto>(ResultStatus.Error,$"Böyle bir resim bulunamadı.",null);
+                return new DataResult<ImageDeletedDto>(ResultStatus.Error, $"Böyle bir resim bulunamadı.", null);
             }
         }
     }

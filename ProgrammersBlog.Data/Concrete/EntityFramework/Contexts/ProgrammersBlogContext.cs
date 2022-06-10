@@ -10,20 +10,17 @@ using ProgrammersBlog.Entities.Concrete;
 
 namespace ProgrammersBlog.Data.Concrete.EntityFramework.Contexts
 {
-    public class ProgrammersBlogContext : IdentityDbContext<User, Role, int,UserClaim, UserRole,UserLogin,RoleClaim,UserToken> //IdentityDbContext
+    public class ProgrammersBlogContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
-       
-
         public DbSet<Article> Articles { get; set; }
-        public DbSet<Category> categories { get; set; }
-        public DbSet<Comment> comments { get; set; }
-        public DbSet<Role> roles { get; set; }
-        public DbSet<User> users { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Log> Logs { get; set; }
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer(
-        //        @"Server=localhost;Database=FSMVUProgrammersBlog;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+        //        @"Server=(localdb)\ProjectsV13;Database=ProgrammersBlog;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
         //}
         public ProgrammersBlogContext(DbContextOptions<ProgrammersBlogContext> options) : base(options)
         {
@@ -41,8 +38,8 @@ namespace ProgrammersBlog.Data.Concrete.EntityFramework.Contexts
             modelBuilder.ApplyConfiguration(new UserLoginMap());
             modelBuilder.ApplyConfiguration(new UserRoleMap());
             modelBuilder.ApplyConfiguration(new UserTokenMap());
+            modelBuilder.ApplyConfiguration(new LogMap());
 
         }
-
     }
 }

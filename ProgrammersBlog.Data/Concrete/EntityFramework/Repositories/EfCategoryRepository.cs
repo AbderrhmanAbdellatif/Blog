@@ -19,7 +19,7 @@ namespace ProgrammersBlog.Data.Concrete.EntityFramework.Repositories
 
         public async Task<Category> GetById(int categoryId)
         {
-            return await ProgrammersBlogContext.categories.SingleOrDefaultAsync(c => c.Id == categoryId);
+            return await ProgrammersBlogContext.Categories.SingleOrDefaultAsync(c => c.Id == categoryId);
         }
 
         private ProgrammersBlogContext ProgrammersBlogContext
